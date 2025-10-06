@@ -33,10 +33,10 @@ const educationData = [
   {
     degree: "10th Standard",
     field: "Secondary Education",
-    institution: "Pioneer Public H.S. School",
-    location: "Anjad, MP",
+    institution: "The Cambridge High Secondary School",
+    location: "Ujjain, MP",
     date: "July 2020",
-    grade: "82.4%",
+    grade: "85.6%",
     icon: BookOpen,
     highlights: [
       "Academic excellence",

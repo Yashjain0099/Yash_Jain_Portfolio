@@ -1,6 +1,6 @@
 import { Users, Mic, Award, Presentation } from 'lucide-react';
 import audienceImage from '@/assets/speaking-audience.jpg';
-import gitImage from '@/assets/speaking-git.jpg';
+import gitImage from '@/assets/speaking-audience.jpg';
 import aiImage1 from '@/assets/speaking-ai-1.jpg';
 import aiImage2 from '@/assets/speaking-ai-2.jpg';
 import classroomImage from '@/assets/speaking-classroom.jpg';
@@ -10,7 +10,7 @@ const speakingEvents = [
   {
     icon: Presentation,
     title: 'MIT College Seminar',
-    topic: 'Navigating Your Tech Career: LinkedIn, Git, and ATS Mastery',
+    topic: 'Navigating Your Tech Career: LinkedIn, Git, and Resume Building',
     context: 'Invited speaker for BBA and BCA students at MIT College',
     image: gitImage,
     impact: [
@@ -23,7 +23,7 @@ const speakingEvents = [
     icon: Mic,
     title: 'AI Agents Workshop',
     topic: 'Understanding AI Agents from Concept to Creation',
-    context: 'Organized and hosted hands-on technical session for Code Club',
+    context: 'Organized and hosted hands-on technical session for Coding Club',
     image: llmImage,
     impact: [
       'Introduced 50+ participants to N8N workflow automation',
@@ -33,7 +33,7 @@ const speakingEvents = [
   },
   {
     icon: Users,
-    title: 'Induction Program Session',
+    title: 'Artificial Intelligence Session',
     topic: 'Interactive LLM Fundamentals & Practical AI Applications',
     context: 'AI Lead presentation for incoming students',
     image: aiImage1,
