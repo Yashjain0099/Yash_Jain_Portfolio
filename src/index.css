@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AI Portfolio Design System - Neural Network Inspired */
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Dark Mode First */
+    --background: 225 50% 8%;        /* #0A0E27 Deep navy-black */
+    --background-secondary: 228 40% 11%; /* #151932 Slightly lighter */
+    --foreground: 0 0% 100%;          /* #FFFFFF Pure white */
+    --foreground-secondary: 215 25% 75%; /* #B8C5D6 Soft blue-gray */
+
+    /* Electric Cyan - Interactive Elements */
+    --primary: 190 100% 50%;          /* #00D9FF Electric cyan */
+    --primary-foreground: 0 0% 0%;
+    --primary-glow: 190 100% 60%;     /* Lighter cyan for glows */
+
+    /* Coral Accent - Secondary CTAs */
+    --accent-warm: 14 100% 60%;       /* #FF6B35 Coral-orange */
+    --accent-warm-foreground: 0 0% 100%;
+
+    /* Success/Code Green */
+    --success: 150 100% 50%;          /* #00FF88 Matrix green */
+    --success-foreground: 0 0% 0%;
+
+    /* Card & Surface Colors */
+    --card: 228 40% 11%;              /* #151932 */
+    --card-foreground: 0 0% 100%;
+    --card-glass: 228 40% 15%;        /* Glassmorphic overlay */
+
+    /* Borders & Inputs */
+    --border: 220 30% 20%;
+    --input: 220 30% 18%;
+    --ring: 190 100% 50%;
+
+    /* Muted Elements */
+    --muted: 220 30% 15%;
+    --muted-foreground: 215 20% 60%;
+
+    /* Destructive */
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-neural: linear-gradient(135deg, hsl(190 100% 50% / 0.1), hsl(190 100% 60% / 0.05));
+    --gradient-card: linear-gradient(135deg, hsl(228 40% 13%), hsl(228 40% 11%));
+    --gradient-border: linear-gradient(90deg, hsl(190 100% 50%), hsl(150 100% 50%));
+    
+    /* Shadows & Glows */
+    --shadow-glow-cyan: 0 0 40px hsl(190 100% 50% / 0.3);
+    --shadow-card: 0 10px 30px hsl(225 50% 5% / 0.5);
+    --shadow-elevated: 0 20px 50px hsl(225 50% 5% / 0.7);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    line-height: 1.1;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+    line-height: 1.2;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+}
+
+/* Custom Animations */
+@layer utilities {
+  /* Typewriter Effect */
+  @keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink-caret {
+    50% { border-color: transparent; }
+  }
+
+  .typewriter {
+    overflow: hidden;
+    border-right: 0.15em solid hsl(var(--primary));
+    white-space: nowrap;
+    animation: typewriter 2s steps(40) 0.5s 1 normal both,
+               blink-caret 0.75s step-end infinite;
+  }
+
+  /* Fade In Up - Scroll Triggered */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  /* Glow Border Animation */
+  @keyframes glow-border {
+    0%, 100% {
+      border-color: hsl(var(--primary));
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.4);
+    }
+    50% {
+      border-color: hsl(var(--success));
+      box-shadow: 0 0 30px hsl(var(--success) / 0.4);
+    }
+  }
+
+  .glow-border {
+    animation: glow-border 3s ease-in-out infinite;
+  }
+
+  /* Floating Animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Pulse Glow */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.6);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Gradient Text */
+  .text-gradient {
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--success)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: hsl(var(--card-glass) / 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border) / 0.3);
+  }
+
+  /* Hover Scale */
+  .hover-scale {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Neural Network Particles */
+  .neural-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .neural-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, hsl(225 50% 10%), hsl(225 50% 6%));
+    z-index: 0;
+  }
+
+  /* Smooth Scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.5);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Hero CTA Buttons */
+  .btn-hero {
+    @apply px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300;
+    @apply bg-primary text-primary-foreground;
+    @apply hover:scale-105 hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)];
+  }
+
+  .btn-hero-secondary {
+    @apply px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300;
+    @apply border-2 border-primary text-primary;
+    @apply hover:bg-primary hover:text-primary-foreground hover:scale-105;
+  }
+
+  .btn-warm {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    @apply bg-accent-warm text-accent-warm-foreground;
+    @apply hover:scale-105 hover:shadow-[0_0_20px_hsl(var(--accent-warm)/0.4)];
+  }
+
+  /* Skill Card */
+  .skill-card {
+    @apply glass rounded-xl p-6 hover-scale;
+    @apply border-2 border-transparent;
+  }
+
+  .skill-card-highlight {
+    @apply skill-card glow-border;
+  }
+
+  /* Project Card */
+  .project-card {
+    @apply glass rounded-2xl overflow-hidden hover-scale cursor-pointer;
+    @apply transition-all duration-300;
+  }
+
+  .project-card:hover {
+    @apply border-primary;
+  }
+
+  /* Tech Tag */
+  .tech-tag {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-mono;
+    @apply bg-primary/10 text-primary border border-primary/30;
+  }
+
+  /* Section Container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 md:px-8 lg:px-12 py-20 md:py-28;
+  }
+
+  /* Timeline Dot */
+  .timeline-dot {
+    @apply w-4 h-4 rounded-full bg-primary;
+    @apply animate-pulse-glow;
+  }
+}
