@@ -17,13 +17,13 @@ const skillCategories = [
     title: 'Frameworks & Libraries',
     icon: Database,
     highlight: false,
-    skills: ['PyTorch', 'TensorFlow', 'Hugging Face Transformers', 'Scikit-learn', 'Pandas', 'NumPy'],
+    skills: ['PyTorch', 'TensorFlow', 'Hugging Face Transformers', 'Scikit-learn', 'Pandas', 'NumPy','Matplotlib','Seaborn'],
   },
   {
     title: 'Tools & Platforms',
     icon: Wrench,
     highlight: false,
-    skills: ['Git/GitHub', 'Docker', 'Jupyter', 'N8N (AI Automation)', 'Streamlit', 'Django'],
+    skills: ['Git/GitHub', 'Docker', 'Jupyter', 'N8N (AI Automation)', 'Streamlit', 'Django','VS Code', 'Linux'],
   },
 ];
 
