@@ -1,0 +1,182 @@
+import { useState } from 'react';
+import { Github, ExternalLink, Sparkles } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const projects = [
+  {
+    title: 'Small Language Model (SLM) from Scratch',
+    description: 'Implemented a Transformer-based Small Language Model from scratch in PyTorch, inspired by GPT architectures for autoregressive text generation',
+    tags: ['Python', 'PyTorch', 'Transformers', 'GPT-2', 'NLP'],
+    categories: ['llm', 'nlp'],
+    github: 'https://github.com/Yashjain0099',
+    demo: null,
+    featured: true,
+  },
+  {
+    title: 'Legal Lens — AI-Powered Contract Analysis',
+    description: 'Web-based AI tool to automate legal contract review with color-coded risk classification and intelligent clause extraction',
+    tags: ['Python', 'Django', 'NLP', 'JavaScript', 'Bootstrap'],
+    categories: ['nlp', 'web'],
+    github: 'https://github.com/Yashjain0099',
+    demo: 'https://github.com/Yashjain0099',
+    featured: true,
+  },
+  {
+    title: 'Iris Tumor Detection using Deep Learning',
+    description: 'CNN-based deep learning model for classifying iris images as tumor-affected or healthy with high precision',
+    tags: ['Python', 'CNN', 'TensorFlow', 'Keras', 'Computer Vision'],
+    categories: ['cv'],
+    github: 'https://github.com/Yashjain0099',
+    demo: null,
+    featured: true,
+  },
+  {
+    title: 'Transformer-Based News Summarizer',
+    description: 'Fine-tuned BART/T5 model to generate concise summaries of large news datasets, reducing reading time by 45%',
+    tags: ['Python', 'BART/T5', 'Hugging Face', 'Streamlit', 'NLP'],
+    categories: ['llm', 'nlp'],
+    github: 'https://github.com/Yashjain0099',
+    demo: null,
+    featured: false,
+  },
+  {
+    title: 'Real-time Bias Detection in NLP',
+    description: 'Intelligent system using PyTorch to analyze and flag gender/racial bias in text datasets with 92% accuracy',
+    tags: ['Python', 'PyTorch', 'BERT', 'C++', 'NLP'],
+    categories: ['nlp'],
+    github: 'https://github.com/Yashjain0099',
+    demo: null,
+    featured: false,
+  },
+  {
+    title: 'SLM-Powered Code Generation Agent',
+    description: 'Built and trained a Small Language Model agent on proprietary code corpus for domain-specific C/C++ function generation',
+    tags: ['Python', 'SLM', 'C/C++', 'API'],
+    categories: ['llm'],
+    github: 'https://github.com/Yashjain0099',
+    demo: null,
+    featured: false,
+  },
+];
+
+const filters = [
+  { label: 'All', value: 'all' },
+  { label: 'LLM/NLP', value: 'llm' },
+  { label: 'Computer Vision', value: 'cv' },
+  { label: 'Web Apps', value: 'web' },
+];
+
+export const Projects = () => {
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  const filteredProjects = projects.filter((project) => {
+    if (activeFilter === 'all') return true;
+    return project.categories.includes(activeFilter);
+  });
+
+  return (
+    <section id="projects" className="section-container bg-background-secondary/30">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Section Header */}
+        <div className="text-center space-y-4">
+          <h2 className="text-foreground">Building Intelligence, One Model at a Time</h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-success mx-auto rounded-full" />
+        </div>
+
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3">
+          {filters.map((filter) => (
+            <Button
+              key={filter.value}
+              onClick={() => setActiveFilter(filter.value)}
+              variant={activeFilter === filter.value ? 'default' : 'outline'}
+              className={`rounded-full ${
+                activeFilter === filter.value
+                  ? 'bg-primary text-primary-foreground shadow-[0_0_20px_hsl(var(--primary)/0.4)]'
+                  : 'border-primary/30 text-foreground-secondary hover:text-primary hover:border-primary'
+              }`}
+            >
+              {filter.label}
+            </Button>
+          ))}
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, index) => (
+            <div
+              key={index}
+              className="project-card group"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              {/* Project Header with Badge */}
+              <div className="relative h-48 bg-gradient-to-br from-primary/20 to-success/10 flex items-center justify-center">
+                {project.featured && (
+                  <div className="absolute top-4 right-4 flex items-center gap-1 px-3 py-1 rounded-full bg-accent-warm text-accent-warm-foreground text-xs font-bold">
+                    <Sparkles className="h-3 w-3" />
+                    Featured
+                  </div>
+                )}
+                <div className="text-6xl">{project.categories.includes('llm') ? '🤖' : project.categories.includes('cv') ? '👁️' : '🌐'}</div>
+              </div>
+
+              {/* Project Content */}
+              <div className="p-6 space-y-4">
+                <h3 className="text-xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-foreground-secondary leading-relaxed">
+                  {project.description}
+                </p>
+
+                {/* Tech Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <span key={tag} className="px-2 py-1 text-xs font-mono rounded bg-primary/10 text-primary">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-3 pt-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex-1 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground"
+                    asChild
+                  >
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Github className="h-4 w-4 mr-2" />
+                      Code
+                    </a>
+                  </Button>
+                  {project.demo ? (
+                    <Button
+                      size="sm"
+                      className="flex-1 bg-primary text-primary-foreground hover:bg-primary-glow"
+                      asChild
+                    >
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Demo
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button
+                      size="sm"
+                      className="flex-1"
+                      disabled
+                    >
+                      Demo Soon
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
