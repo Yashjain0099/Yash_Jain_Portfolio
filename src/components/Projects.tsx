@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Github, ExternalLink, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import projectImage1 from '@/assets/project-1.png';
-import projectImage2 from '@/assets/project-2.png';
-
+import projectImage1 from '@/assets/SLM.png';
+import projectImage2 from '@/assets/legallens.png';
+import projectImage3 from '@/assets/iristumordetection.png';
 const projects = [
   {
     title: 'Small Language Model (SLM) from Scratch',
@@ -33,9 +33,9 @@ const projects = [
     featured: true,
   },
   {
-    title: 'Transformer-Based News Summarizer',
-    description: 'Fine-tuned BART/T5 model to generate concise summaries of large news datasets, reducing reading time by 45%',
-    tags: ['Python', 'BART/T5', 'Hugging Face', 'Streamlit', 'NLP'],
+    title: 'TokenTrim',
+    description: 'Reduce LLM prompt tokens by up to 90%',
+    tags: ['Python', 'NLP', 'Hugging Face', 'Streamlit'],
     categories: ['llm', 'nlp'],
     github: 'https://github.com/Yashjain0099',
     demo: null,
@@ -119,8 +119,14 @@ export const Projects = () => {
                     Featured
                   </div>
                 )}
-                <img 
-                  src={index % 2 === 0 ? projectImage1 : projectImage2} 
+                <img
+                  src={
+                    index % 3 === 0
+                      ? projectImage1
+                      : index % 3 === 1
+                      ? projectImage2
+                      : projectImage3
+                  }
                   alt={project.title}
                   className="w-full h-full object-cover opacity-90"
                 />
