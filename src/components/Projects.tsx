@@ -119,14 +119,9 @@ export const Projects = () => {
                     Featured
                   </div>
                 )}
-                <img
-                  src={
-                    index % 3 === 0
-                      ? projectImage1
-                      : index % 3 === 1
-                      ? projectImage2
-                      : projectImage3
-                  }
+                <img 
+                  src={index % 2 === 0 ? projectImage1 : projectImage2} 
+                
                   alt={project.title}
                   className="w-full h-full object-cover opacity-90"
                 />
