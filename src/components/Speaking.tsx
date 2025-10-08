@@ -8,7 +8,7 @@ import aiagent3 from '@/assets/aiagent3.jpg';
 import legal1 from '@/assets/legal1.jpg';
 import legal2 from '@/assets/legal2.jpg';
 import aiagent1 from '@/assets/aiagent1.jpg';
-import audienceLarge from '@/assets/speaking-audience-large.jpg';
+// import audienceLarge from '@/assets/speaking-audience-large.jpg';
 import ai1 from '@/assets/ai1.jpg';
 import ai2 from '@/assets/ai2.jpg';
 const speakingEvents = [
@@ -69,7 +69,7 @@ const speakingEvents = [
     title: 'Large Audience Seminar',
     topic: 'Future of AI and Technology',
     context: 'Conference talk for 100+ students',
-    images: [audienceLarge, audienceImage, mitaudience],
+    images: [aiagent2, mitaudience, mitaudience],
     linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
     impact: [
       'Engaging presentation on AI trends',
