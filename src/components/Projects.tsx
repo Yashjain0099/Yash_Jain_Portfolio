@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Github, ExternalLink, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import projectImage1 from '@/assets/SLM.png';
+import projectImage1 from '@/assets/project-1.png';
 import projectImage2 from '@/assets/legallens.png';
 import projectImage3 from '@/assets/iristumordetection.png';
 const projects = [
