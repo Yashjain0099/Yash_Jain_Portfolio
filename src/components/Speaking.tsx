@@ -1,23 +1,22 @@
 import { useState, useEffect } from 'react';
 import { Users, Mic, Award, Presentation } from 'lucide-react';
-import mitclose from '@/assets/mit-close-shotjpg';
-import mitaudience from '@/assets/mit-audience.jpg';
-import mitfull from '@/assets/mit-full-shot.jpg';
-import aiagent2 from '@/assets/aiagent2.jpg';
-import aiagent3 from '@/assets/aiagent3.jpg';
-import legal1 from '@/assets/legal1.jpg';
-import legal2 from '@/assets/legal2.jpg';
-import aiagent1 from '@/assets/aiagent1.jpg';
-// import audienceLarge from '@/assets/speaking-audience-large.jpg';
-import ai1 from '@/assets/ai1.jpg';
-import ai2 from '@/assets/ai2.jpg';
+import audienceImage from '@/assets/speaking-audience.jpg';
+import gitImage1 from '@/assets/speaking-git-1.jpg';
+import gitImage2 from '@/assets/speaking-git-2.jpg';
+import aiImage1 from '@/assets/speaking-ai-mitm-1.jpg';
+import aiImage2 from '@/assets/speaking-ai-mitm-2.jpg';
+import classroomImage from '@/assets/speaking-classroom-1.jpg';
+import workshopImage from '@/assets/speaking-workshop-1.jpg';
+import llmImage from '@/assets/speaking-llm-1.jpg';
+import audienceLarge from '@/assets/speaking-audience-large.jpg';
+
 const speakingEvents = [
   {
     icon: Presentation,
     title: 'MIT College Seminar',
     topic: 'Navigating Your Tech Career: LinkedIn, Git, and Resume Building',
     context: 'Invited speaker for BBA and BCA students at MIT College',
-    images: [mitaudience, mitfull, mitclose],
+    images: [gitImage1, gitImage2, audienceImage],
     linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
     impact: [
       'Engaged 80+ students in an interactive session',
@@ -30,7 +29,7 @@ const speakingEvents = [
     title: 'AI Agents Workshop',
     topic: 'Understanding AI Agents from Concept to Creation',
     context: 'Organized and hosted hands-on technical session for Coding Club',
-    images: [aiagent1, aiagent2, aiagent3],
+    images: [llmImage, aiImage1, aiImage2],
     linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
     impact: [
       'Introduced 50+ participants to N8N workflow automation',
@@ -43,7 +42,7 @@ const speakingEvents = [
     title: 'Artificial Intelligence Session',
     topic: 'Interactive LLM Fundamentals & Practical AI Applications',
     context: 'AI Lead presentation for incoming students',
-    images: [ai1, ai2, ai1],
+    images: [aiImage1, aiImage2, classroomImage],
     linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
     impact: [
       'Simplified complex concepts for 100+ first-year students',
@@ -53,10 +52,10 @@ const speakingEvents = [
   },
   {
     icon: Award,
-    title: 'Project Presentation',
+    title: 'Classroom Workshop',
     topic: 'Technical Communication: Presenting AI Project to Faculty',
     context: 'Formal project defense with faculty panel evaluation',
-    images: [legal1, legal2, legal1],
+    images: [classroomImage, workshopImage, audienceLarge],
     linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
     impact: [
       'Successfully defended complex system architecture',
@@ -69,7 +68,7 @@ const speakingEvents = [
     title: 'Large Audience Seminar',
     topic: 'Future of AI and Technology',
     context: 'Conference talk for 100+ students',
-    images: [aiagent2, mitaudience, mitaudience],
+    images: [audienceLarge, audienceImage, gitImage1],
     linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
     impact: [
       'Engaging presentation on AI trends',
