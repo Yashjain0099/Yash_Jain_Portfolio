@@ -28,8 +28,13 @@ export const Contact = () => {
       return;
     }
 
-    // Success message (in production, this would send to a backend)
-    toast.success("Message sent! I'll get back to you soon.");
+    // Create mailto link
+    const mailtoLink = `mailto:yashhjainofficial@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    toast.success("Opening your email client...");
     
     // Reset form
     setFormData({ name: '', email: '', message: '' });
@@ -63,10 +68,10 @@ export const Contact = () => {
                   <div>
                     <p className="text-sm text-foreground-secondary">Email</p>
                     <a
-                      href="mailto:yashjain@example.com"
+                      href="mailto:yashhjainofficial@gmail.com"
                       className="text-foreground hover:text-primary transition-colors"
                     >
-                      Contact via form
+                      yashhjainofficial@gmail.com
                     </a>
                   </div>
                 </div>

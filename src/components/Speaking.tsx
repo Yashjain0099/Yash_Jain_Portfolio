@@ -1,10 +1,14 @@
+import { useState, useEffect } from 'react';
 import { Users, Mic, Award, Presentation } from 'lucide-react';
 import audienceImage from '@/assets/speaking-audience.jpg';
-import gitImage from '@/assets/speaking-audience.jpg';
-import aiImage1 from '@/assets/speaking-ai-1.jpg';
-import aiImage2 from '@/assets/speaking-ai-2.jpg';
-import classroomImage from '@/assets/speaking-classroom.jpg';
-import llmImage from '@/assets/speaking-llm.jpg';
+import gitImage1 from '@/assets/speaking-git-1.jpg';
+import gitImage2 from '@/assets/speaking-git-2.jpg';
+import aiImage1 from '@/assets/speaking-ai-mitm-1.jpg';
+import aiImage2 from '@/assets/speaking-ai-mitm-2.jpg';
+import classroomImage from '@/assets/speaking-classroom-1.jpg';
+import workshopImage from '@/assets/speaking-workshop-1.jpg';
+import llmImage from '@/assets/speaking-llm-1.jpg';
+import audienceLarge from '@/assets/speaking-audience-large.jpg';
 
 const speakingEvents = [
   {
@@ -12,7 +16,8 @@ const speakingEvents = [
     title: 'MIT College Seminar',
     topic: 'Navigating Your Tech Career: LinkedIn, Git, and Resume Building',
     context: 'Invited speaker for BBA and BCA students at MIT College',
-    image: gitImage,
+    images: [gitImage1, gitImage2, audienceImage],
+    linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
     impact: [
       'Engaged 80+ students in an interactive session',
       'Provided actionable strategies for LinkedIn optimization',
@@ -24,7 +29,8 @@ const speakingEvents = [
     title: 'AI Agents Workshop',
     topic: 'Understanding AI Agents from Concept to Creation',
     context: 'Organized and hosted hands-on technical session for Coding Club',
-    image: llmImage,
+    images: [llmImage, aiImage1, aiImage2],
+    linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
     impact: [
       'Introduced 50+ participants to N8N workflow automation',
       'Built 3 real-world AI agents during live demos',
@@ -36,7 +42,8 @@ const speakingEvents = [
     title: 'Artificial Intelligence Session',
     topic: 'Interactive LLM Fundamentals & Practical AI Applications',
     context: 'AI Lead presentation for incoming students',
-    image: aiImage1,
+    images: [aiImage1, aiImage2, classroomImage],
+    linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
     impact: [
       'Simplified complex concepts for 100+ first-year students',
       'Achieved 95% comprehension rate in post-session quiz',
@@ -45,14 +52,28 @@ const speakingEvents = [
   },
   {
     icon: Award,
-    title: 'Legal Lens Presentation',
+    title: 'Classroom Workshop',
     topic: 'Technical Communication: Presenting AI Project to Faculty',
     context: 'Formal project defense with faculty panel evaluation',
-    image: classroomImage,
+    images: [classroomImage, workshopImage, audienceLarge],
+    linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
     impact: [
       'Successfully defended complex system architecture',
       'Demonstrated communication under pressure',
       'Received commendation for project originality',
+    ],
+  },
+  {
+    icon: Award,
+    title: 'Large Audience Seminar',
+    topic: 'Future of AI and Technology',
+    context: 'Conference talk for 100+ students',
+    images: [audienceLarge, audienceImage, gitImage1],
+    linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
+    impact: [
+      'Engaging presentation on AI trends',
+      'Inspired students to pursue tech careers',
+      'Positive audience feedback',
     ],
   },
 ];
@@ -97,6 +118,48 @@ const achievements = [
   { icon: '👥', text: 'Coding Club Lead - Organized hackathons & challenges' },
 ];
 
+const ImageCarousel = ({ images }: { images: string[] }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  return (
+    <div className="relative h-64 overflow-hidden">
+      {images.map((image, index) => (
+        <img
+          key={index}
+          src={image}
+          alt={`Slide ${index + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            index === currentIndex ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+      {images.length > 1 && (
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+          {images.map((_, index) => (
+            <div
+              key={index}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                index === currentIndex ? 'w-8 bg-primary' : 'w-1.5 bg-primary/30'
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 export const Speaking = () => {
   return (
     <section id="speaking" className="section-container">
@@ -110,20 +173,16 @@ export const Speaking = () => {
         {/* Speaking Events */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {speakingEvents.map((event, index) => (
-            <div
+            <a
               key={index}
-              className="glass rounded-2xl hover-scale overflow-hidden"
+              href={event.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass rounded-2xl hover-scale overflow-hidden block cursor-pointer"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Event Image */}
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={event.image} 
-                  alt={event.title}
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"></div>
-              </div>
+              {/* Event Image Carousel */}
+              <ImageCarousel images={event.images} />
               
               {/* Event Details */}
               <div className="p-6 space-y-4">
@@ -152,7 +211,7 @@ export const Speaking = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 

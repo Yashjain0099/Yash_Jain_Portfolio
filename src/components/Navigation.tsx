@@ -120,7 +120,7 @@ export const Navigation = () => {
                   }`}
                 >
                   {link.label}
-                </a>
+              </a>
               </li>
             ))}
           </ul>

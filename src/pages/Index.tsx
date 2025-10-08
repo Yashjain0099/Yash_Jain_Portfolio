@@ -9,8 +9,10 @@ import { Education } from '@/components/Education';
 import { Experience } from '@/components/Experience';
 import { Projects } from '@/components/Projects';
 import { Speaking } from '@/components/Speaking';
+import { Certificates } from '@/components/Certificates';
 import { Testimonial } from '@/components/Testimonial';
 import { Contact } from '@/components/Contact';
+import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 
 const Index = () => {
@@ -61,18 +63,13 @@ const Index = () => {
         <Experience />
         <Projects />
         <Speaking />
+        <Certificates />
         <Testimonial />
         <Contact />
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-border/30 bg-background-secondary/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 py-8 text-center">
-          <p className="text-foreground-secondary text-sm">
-            © 2025 Yash Jain. Built with passion for AI and innovation.
-          </p>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Floating Hire Me Button - Now visible after scrolling past hero */}
       {showHireMe && (

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Github, ExternalLink, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import projectImage1 from '@/assets/project-1.png';
+import projectImage2 from '@/assets/project-2.png';
 
 const projects = [
   {
@@ -110,14 +112,18 @@ export const Projects = () => {
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Project Header with Badge */}
-              <div className="relative h-48 bg-gradient-to-br from-primary/20 to-success/10 flex items-center justify-center">
+              <div className="relative h-48 bg-gradient-to-br from-primary/20 to-success/10 overflow-hidden">
                 {project.featured && (
-                  <div className="absolute top-4 right-4 flex items-center gap-1 px-3 py-1 rounded-full bg-accent-warm text-accent-warm-foreground text-xs font-bold">
+                  <div className="absolute top-4 right-4 z-10 flex items-center gap-1 px-3 py-1 rounded-full bg-accent-warm text-accent-warm-foreground text-xs font-bold">
                     <Sparkles className="h-3 w-3" />
                     Featured
                   </div>
                 )}
-                <div className="text-6xl">{project.categories.includes('llm') ? '🤖' : project.categories.includes('cv') ? '👁️' : '🌐'}</div>
+                <img 
+                  src={index % 2 === 0 ? projectImage1 : projectImage2} 
+                  alt={project.title}
+                  className="w-full h-full object-cover opacity-90"
+                />
               </div>
 
               {/* Project Content */}

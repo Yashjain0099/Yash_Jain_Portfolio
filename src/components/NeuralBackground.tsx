@@ -26,15 +26,15 @@ export const NeuralBackground = () => {
     window.addEventListener('resize', resizeCanvas);
 
     // Create particles
-    const particleCount = Math.min(50, Math.floor(window.innerWidth / 30));
+    const particleCount = Math.min(80, Math.floor(window.innerWidth / 25));
     const particles: Particle[] = [];
     
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
       });
     }
 
@@ -52,10 +52,16 @@ export const NeuralBackground = () => {
         if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
         if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
-        // Draw particle
+        // Draw particle with glow
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 217, 255, 0.5)';
+        ctx.fillStyle = 'rgba(0, 217, 255, 0.6)';
+        ctx.fill();
+        
+        // Add glow effect
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 217, 255, 0.1)';
         ctx.fill();
 
         // Draw connections
@@ -64,12 +70,13 @@ export const NeuralBackground = () => {
           const dy = particle.y - otherParticle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
+          if (distance < 180) {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `rgba(0, 217, 255, ${0.15 * (1 - distance / 150)})`;
-            ctx.lineWidth = 1;
+            const opacity = 0.2 * (1 - distance / 180);
+            ctx.strokeStyle = `rgba(0, 217, 255, ${opacity})`;
+            ctx.lineWidth = 1.5;
             ctx.stroke();
           }
         });

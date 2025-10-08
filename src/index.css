@@ -8,29 +8,29 @@
 
 @layer base {
   :root {
-    /* Core Brand Colors - Dark Mode First */
-    --background: 225 50% 8%;        /* #0A0E27 Deep navy-black */
-    --background-secondary: 228 40% 11%; /* #151932 Slightly lighter */
-    --foreground: 0 0% 100%;          /* #FFFFFF Pure white */
-    --foreground-secondary: 215 25% 75%; /* #B8C5D6 Soft blue-gray */
+    /* Core Brand Colors - Dark Mode Only */
+    --background: 220 20% 14%;
+    --background-secondary: 220 18% 18%;
+    --foreground: 210 40% 98%;
+    --foreground-secondary: 217 10% 70%;
 
     /* Electric Cyan - Interactive Elements */
-    --primary: 190 100% 50%;          /* #00D9FF Electric cyan */
+    --primary: 190 100% 50%;
     --primary-foreground: 0 0% 0%;
-    --primary-glow: 190 100% 60%;     /* Lighter cyan for glows */
+    --primary-glow: 190 100% 60%;
 
     /* Coral Accent - Secondary CTAs */
-    --accent-warm: 14 100% 60%;       /* #FF6B35 Coral-orange */
+    --accent-warm: 14 100% 60%;
     --accent-warm-foreground: 0 0% 100%;
 
     /* Success/Code Green */
-    --success: 150 100% 50%;          /* #00FF88 Matrix green */
+    --success: 150 100% 50%;
     --success-foreground: 0 0% 0%;
 
     /* Card & Surface Colors */
-    --card: 228 40% 11%;              /* #151932 */
+    --card: 228 40% 11%;
     --card-foreground: 0 0% 100%;
-    --card-glass: 228 40% 15%;        /* Glassmorphic overlay */
+    --card-glass: 228 40% 15%;
 
     /* Borders & Inputs */
     --border: 220 30% 20%;
@@ -45,21 +45,14 @@
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
+    /* Chart Colors */
+    --chart-1: 190 100% 50%;
+    --chart-2: 150 100% 50%;
+    --chart-3: 14 100% 60%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
     --radius: 0.75rem;
-
-    /* Gradients */
-    --gradient-neural: linear-gradient(135deg, hsl(190 100% 50% / 0.1), hsl(190 100% 60% / 0.05));
-    --gradient-card: linear-gradient(135deg, hsl(228 40% 13%), hsl(228 40% 11%));
-    --gradient-border: linear-gradient(90deg, hsl(190 100% 50%), hsl(150 100% 50%));
-    
-    /* Shadows & Glows */
-    --shadow-glow-cyan: 0 0 40px hsl(190 100% 50% / 0.3);
-    --shadow-card: 0 10px 30px hsl(225 50% 5% / 0.5);
-    --shadow-elevated: 0 20px 50px hsl(225 50% 5% / 0.7);
-
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 }
 
@@ -240,6 +233,7 @@
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary));
   }
+
 }
 
 /* Component Styles */

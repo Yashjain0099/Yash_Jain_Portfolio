@@ -54,36 +54,36 @@ export const Hero = () => {
       id="home"
       className="relative min-h-screen flex items-center justify-center neural-bg"
     >
-      <div className="relative z-10 section-container text-center">
+      <div className="relative z-20 section-container text-center">
         <div className="max-w-5xl mx-auto space-y-8">
           {/* Profile Image */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-8" style={{ opacity: 1 }}>
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary to-success rounded-full blur opacity-75 group-hover:opacity-100 animate-pulse-glow transition duration-1000"></div>
               <img 
                 src={profileImage} 
                 alt="Yash Jain - AI Engineer" 
-                className="relative w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-background shadow-2xl"
+                className="relative w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-background shadow-2xl hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>
 
           {/* Main Headline with Typewriter Effect */}
-          <h1 className="text-foreground leading-tight">
-            <span className="text-gradient font-bold animate-fade-in-up">
+          <h1 className="leading-tight" style={{ opacity: 1 }}>
+            <span className="text-gradient font-bold block" style={{ opacity: 1 }}>
               {displayedText}<span className="animate-pulse">|</span>
             </span>
             <br />
-            <span className="text-3xl md:text-4xl">Final Year AI Engineer</span>
+            <span className="text-3xl md:text-4xl text-foreground block" style={{ opacity: 1 }}>Final Year AI Engineer</span>
             <br />
-            <span className="text-gradient">Building Intelligent Systems for Real-World Impact</span>
+            <span className="text-gradient block" style={{ opacity: 1 }}>Building Intelligent Systems for Real-World Impact</span>
           </h1>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6" style={{ opacity: 1 }}>
             <Button
               onClick={scrollToProjects}
-              className="btn-hero w-full sm:w-auto"
+              className="btn-hero w-full sm:w-auto hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-primary/50"
             >
               View Projects
               <ArrowDown className="ml-2 h-5 w-5" />
@@ -91,14 +91,14 @@ export const Hero = () => {
           </div>
 
           {/* Social Links */}
-          <div className="flex items-center justify-center gap-6 pt-8">
+          <div className="flex items-center justify-center gap-6 pt-8" style={{ opacity: 1 }}>
             {socialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full border-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
+                className="p-3 rounded-full border-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-125 hover:-translate-y-1 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)]"
                 aria-label={social.label}
               >
                 <social.icon className="h-6 w-6" />
