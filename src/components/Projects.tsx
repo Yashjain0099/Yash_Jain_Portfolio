@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { Github, ExternalLink, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import projectImage1 from '@/assets/project-1.png';
-import projectImage2 from '@/assets/project-2.png';
+import projectSLM from '@/assets/project-slm.png';
+import projectTokenTrim from '@/assets/project-tokentrim.png';
+import projectLegalLens from '@/assets/project-legallens.png';
+import projectIris from '@/assets/project-iris.png';
+import projectNN from '@/assets/project-nn.png';
+import projectYashLib from '@/assets/project-yashlib.png';
 
 const projects = [
   {
@@ -13,6 +17,17 @@ const projects = [
     github: 'https://github.com/Yashjain0099/Small_Language_Model_from_Scratch',
     demo: null,
     featured: true,
+    image: projectSLM,
+  },
+  {
+    title: 'TokenTrim — Intelligent Token Optimizer',
+    description: 'Smart token optimization tool that reduces API costs by intelligently trimming unnecessary tokens while preserving context and meaning',
+    tags: ['Python', 'NLP', 'LLM', 'API', 'Optimization'],
+    categories: ['llm', 'nlp'],
+    github: 'https://github.com/Yashjain0099/TokenTrim',
+    demo: null,
+    featured: true,
+    image: projectTokenTrim,
   },
   {
     title: 'Legal Lens — AI-Powered Contract Analysis',
@@ -22,6 +37,7 @@ const projects = [
     github: 'https://github.com/Yashjain0099/LegalLens',
     demo: null,
     featured: true,
+    image: projectLegalLens,
   },
   {
     title: 'Iris Tumor Detection using Deep Learning',
@@ -31,33 +47,27 @@ const projects = [
     github: 'https://github.com/Yashjain0099/Iris_Tumor_Detection',
     demo: null,
     featured: true,
+    image: projectIris,
   },
   {
-    title: 'Transformer-Based News Summarizer',
-    description: 'Fine-tuned BART/T5 model to generate concise summaries of large news datasets, reducing reading time by 45%',
-    tags: ['Python', 'BART/T5', 'Hugging Face', 'Streamlit', 'NLP'],
+    title: 'Neural Network Foundation',
+    description: 'Implementation of fundamental neural network architectures including Perceptron and Multi-Layer Perceptron from scratch for deep learning education',
+    tags: ['Python', 'NumPy', 'Neural Networks', 'MLP', 'Deep Learning'],
     categories: ['llm', 'nlp'],
-    github: 'https://github.com/Yashjain0099',
+    github: 'https://github.com/Yashjain0099/NN_Foundation/blob/main/notebooks/The_Perceptron_%26_1-Hidden-Layer_MLP.ipynb',
     demo: null,
     featured: false,
+    image: projectNN,
   },
   {
-    title: 'Real-time Bias Detection in NLP',
-    description: 'Intelligent system using PyTorch to analyze and flag gender/racial bias in text datasets with 92% accuracy',
-    tags: ['Python', 'PyTorch', 'BERT', 'C++', 'NLP'],
-    categories: ['nlp'],
-    github: 'https://github.com/Yashjain0099',
-    demo: null,
-    featured: false,
-  },
-  {
-    title: 'SLM-Powered Code Generation Agent',
-    description: 'Built and trained a Small Language Model agent on proprietary code corpus for domain-specific C/C++ function generation',
-    tags: ['Python', 'SLM', 'C/C++', 'API'],
+    title: 'YashLib — Custom AI Utilities Library',
+    description: 'Personal collection of reusable AI/ML utilities and helper functions for rapid prototyping and development',
+    tags: ['Python', 'Library', 'Utilities', 'AI/ML', 'Tools'],
     categories: ['llm'],
-    github: 'https://github.com/Yashjain0099',
+    github: 'https://github.com/Yashjain0099/YashLib',
     demo: null,
     featured: false,
+    image: projectYashLib,
   },
 ];
 
@@ -120,7 +130,7 @@ export const Projects = () => {
                   </div>
                 )}
                 <img 
-                  src={index % 2 === 0 ? projectImage1 : projectImage2} 
+                  src={project.image} 
                   alt={project.title}
                   className="w-full h-full object-cover opacity-90"
                 />

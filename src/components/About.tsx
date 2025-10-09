@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { Code2, Users, Award, Cpu } from 'lucide-react';
+import { Code2, Award, Cpu } from 'lucide-react';
 
 const stats = [
-  { icon: Users, label: 'Technical Mentorship', value: 1, suffix: '' },
   { icon: Award, label: 'Workshop Host', value: 4, suffix: '+' },
   { icon: Code2, label: 'Events Speaker', value: 6, suffix: '+' },
-  { icon: Cpu, label: 'Communities Member', value: 1, suffix: '' },
+  { icon: Cpu, label: 'Communities Member', value: 5, suffix: '+' },
 ];
 
 const useCountUp = (end: number, duration: number, shouldStart: boolean) => {
@@ -82,7 +81,7 @@ export const About = () => {
         </div>
 
         {/* Animated Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {stats.map((stat, index) => {
             const count = useCountUp(stat.value, 2000, isVisible);
             return (
