@@ -24,7 +24,7 @@ const speakingEvents = [
       'Provided actionable strategies for LinkedIn optimization',
       '92% positive feedback rating',
     ],
-    featured: as a special speaker,
+    featured: 'as a special speaker',
 
   },
   {
@@ -39,7 +39,7 @@ const speakingEvents = [
       'Built 3 real-world AI agents during live demos',
       'Covered LLM integration and autonomous decision-making',
     ],
-    featured: click to view,
+    featured: 'click to view',
   },
   {
     icon: Users,
