@@ -63,20 +63,16 @@ export const About = () => {
       <div className="max-w-5xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="text-center space-y-4">
-          <h2 className="text-foreground">Who I Am</h2>
+          <h2 className="text-foreground">Who Am I</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-success mx-auto rounded-full" />
         </div>
 
         {/* About Text */}
         <div className="glass p-8 md:p-12 rounded-2xl">
           <p className="text-lg md:text-xl text-foreground-secondary leading-relaxed">
-            As a <span className="text-primary font-semibold">final-year student specializing in AI and Machine Learning</span>, 
-            I focus on building production-grade systems powered by Large Language Models and Generative AI. My work centers 
-            on transforming raw data into scalable, intelligent solutions that solve real business challenges—from automating 
-            legal contract analysis to detecting medical anomalies. I thrive in collaborative learning environments, whether 
-            contributing to <span className="text-primary font-semibold">open-source projects</span> or leading workshops that 
-            make AI accessible to hundreds of students. My mission is to push the boundaries of what's possible with LLMs 
-            while ensuring these technologies create tangible value.
+            Hi, I’m Yash Jain — an aspiring <span className="text-primary font-semibold">AI & Machine Learning Engineer</span> passionate about transforming ideas into intelligent, real-world solutions. I thrive at the intersection of innovation and impact, constantly exploring the <span className="text-primary font-semibold">latest advancements in AI, ML, LLMs, RAG, and Generative AI</span> to create projects that solve practical problems.
+            As the AI Lead of “Club to Code” at my college and an active member of <span className="text-primary font-semibold">Google for Developers, Microsoft Learn Student Community, and the Google Innovator Program,</span> I’ve always believed in learning by doing and leading by example. My journey spans hands-on projects like Iris Tumor Detection using CNN, Token Trim, and several AI-powered dashboards, each reflecting my drive to build from scratch and push boundaries.
+            Beyond coding, I’m an enthusiastic designer, and communicator who enjoys sharing knowledge through <span className="text-primary font-semibold">workshops, tech sessions, and collaborative projects.</span> My mission is simple — to craft meaningful AI solutions that empower people, inspire curiosity, and redefine possibilities.
           </p>
         </div>
 

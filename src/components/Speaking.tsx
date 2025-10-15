@@ -9,6 +9,7 @@ import classroomImage from '@/assets/speaking-classroom-1.jpg';
 import workshopImage from '@/assets/speaking-workshop-1.jpg';
 import llmImage from '@/assets/speaking-llm-1.jpg';
 import audienceLarge from '@/assets/speaking-audience-large.jpg';
+import studentdoubts from '@/assets/aiagent3.jpg';
 
 const speakingEvents = [
   {
@@ -17,33 +18,36 @@ const speakingEvents = [
     topic: 'Navigating Your Tech Career: LinkedIn, Git, and Resume Building',
     context: 'Invited speaker for BBA and BCA students at MIT College',
     images: [gitImage1, gitImage2, audienceImage],
-    linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
+    linkedinUrl: 'https://www.linkedin.com/posts/theyashjain0099_publicspeaking-mahakalinstituteofmanagement-activity-7378647347020496897-rBfs?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEhAvS4BK4ZFUf_k64I88OfDriOlWSLqBto',
     impact: [
       'Engaged 80+ students in an interactive session',
       'Provided actionable strategies for LinkedIn optimization',
       '92% positive feedback rating',
     ],
+    featured: as a special speaker,
+
   },
   {
     icon: Mic,
     title: 'AI Agents Workshop',
     topic: 'Understanding AI Agents from Concept to Creation',
     context: 'Organized and hosted hands-on technical session for Coding Club',
-    images: [llmImage, aiImage1, aiImage2],
-    linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
+    images: [llmImage, audienceLarge, studentdoubts],
+    linkedinUrl: 'https://www.linkedin.com/posts/theyashjain0099_artificialintelligence-aieducation-leadershipdevelopment-activity-7322857999255920640-x2T-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEhAvS4BK4ZFUf_k64I88OfDriOlWSLqBto',
     impact: [
       'Introduced 50+ participants to N8N workflow automation',
       'Built 3 real-world AI agents during live demos',
       'Covered LLM integration and autonomous decision-making',
     ],
+    featured: click to view,
   },
   {
     icon: Users,
     title: 'Artificial Intelligence Session',
     topic: 'Interactive LLM Fundamentals & Practical AI Applications',
     context: 'AI Lead presentation for incoming students',
-    images: [aiImage1, aiImage2, classroomImage],
-    linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
+    images: [aiImage1, aiImage2, aiImage1],
+    linkedinUrl: 'https://www.linkedin.com/posts/theyashjain0099_artificialintelligence-machinelearning-collegelife-activity-7373606251794034688-4bIr?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEhAvS4BK4ZFUf_k64I88OfDriOlWSLqBto',
     impact: [
       'Simplified complex concepts for 100+ first-year students',
       'Achieved 95% comprehension rate in post-session quiz',
@@ -52,10 +56,10 @@ const speakingEvents = [
   },
   {
     icon: Award,
-    title: 'Classroom Workshop',
+    title: 'Project Presentation',
     topic: 'Technical Communication: Presenting AI Project to Faculty',
     context: 'Formal project defense with faculty panel evaluation',
-    images: [classroomImage, workshopImage, audienceLarge],
+    images: [classroomImage, workshopImage],
     linkedinUrl: 'https://www.linkedin.com/in/theyashjain0099',
     impact: [
       'Successfully defended complex system architecture',
@@ -115,7 +119,7 @@ const achievements = [
   { icon: '🏆', text: 'International Hackathon Selection - Paris Blockchain Week' },
   { icon: '🌐', text: 'Google Developers Group Member' },
   { icon: '☁️', text: 'Google Cloud Skill Boost Member since 2023' },
-  { icon: '👥', text: 'Coding Club Lead - Organized hackathons & challenges' },
+  { icon: '👥', text: 'AI Coding Club Lead - Organized Session, hackathons & challenges' },
 ];
 
 const ImageCarousel = ({ images }: { images: string[] }) => {

@@ -25,7 +25,7 @@ const projects = [
     tags: ['Python', 'NLP', 'LLM', 'API', 'Optimization'],
     categories: ['llm', 'nlp'],
     github: 'https://github.com/Yashjain0099/TokenTrim',
-    demo: null,
+    demo: 'https://huggingface.co/spaces/Yashuu/TokenTrim',
     featured: true,
     image: projectTokenTrim,
   },

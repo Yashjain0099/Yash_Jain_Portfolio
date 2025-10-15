@@ -82,7 +82,7 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="text-sm text-foreground-secondary">Location</p>
-                    <p className="text-foreground">Mumbai, Maharashtra, India</p>
+                    <p className="text-foreground">Ujjain, Madhya Pradesh, India</p>
                   </div>
                 </div>
               </div>
