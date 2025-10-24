@@ -45,7 +45,7 @@ const projects = [
     tags: ['Python', 'CNN', 'TensorFlow', 'Keras', 'Computer Vision'],
     categories: ['cv'],
     github: 'https://github.com/Yashjain0099/Iris_Tumor_Detection',
-    demo: null,
+    demo: 'https://huggingface.co/spaces/Yashuu/I-Tumor-Scanner',
     featured: true,
     image: projectIris,
   },
