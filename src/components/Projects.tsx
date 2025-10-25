@@ -42,7 +42,7 @@ const projects = [
   {
     title: 'Iris Tumor Detection using Deep Learning',
     description: 'CNN-based deep learning model for classifying iris images as tumor-affected or healthy with high precision',
-    tags: ['Python', 'CNN', 'TensorFlow', 'Keras', 'Computer Vision'],
+    tags: ['Python', 'CNN', 'TensorFlow', 'Keras', 'Computer Vision','flask'],
     categories: ['cv'],
     github: 'https://github.com/Yashjain0099/Iris_Tumor_Detection',
     demo: 'https://huggingface.co/spaces/Yashuu/I-Tumor-Scanner',
@@ -52,7 +52,7 @@ const projects = [
   {
     title: 'Neural Network Foundation',
     description: 'Implementation of fundamental neural network architectures including Perceptron and Multi-Layer Perceptron from scratch for deep learning education',
-    tags: ['Python', 'NumPy', 'Neural Networks', 'MLP', 'Deep Learning'],
+    tags: ['Python', 'NumPy', 'Neural Networks', 'Deep Learning'],
     categories: ['llm', 'nlp'],
     github: 'https://github.com/Yashjain0099/NN_Foundation/blob/main/notebooks/The_Perceptron_%26_1-Hidden-Layer_MLP.ipynb',
     demo: null,
@@ -60,10 +60,10 @@ const projects = [
     image: projectNN,
   },
   {
-    title: 'YashLib — Custom AI Utilities Library',
-    description: 'Personal collection of reusable AI/ML utilities and helper functions for rapid prototyping and development',
-    tags: ['Python', 'Library', 'Utilities', 'AI/ML', 'Tools'],
-    categories: ['llm'],
+    title: 'YashLib — Custom C Header file or Library',
+    description: 'Personal library of C utilities and data structures including array manipulation , string manipulation, Stack, Queue, functions for efficient programming',
+    tags: ['C', 'Library', 'Data Structures', 'Utilities'],
+    categories: ['C lang'],
     github: 'https://github.com/Yashjain0099/YashLib',
     demo: null,
     featured: false,
@@ -76,6 +76,7 @@ const filters = [
   { label: 'LLM/NLP', value: 'llm' },
   { label: 'Computer Vision', value: 'cv' },
   { label: 'Web Apps', value: 'web' },
+  { label: 'C Programming', value: 'C lang' },
 ];
 
 export const Projects = () => {
