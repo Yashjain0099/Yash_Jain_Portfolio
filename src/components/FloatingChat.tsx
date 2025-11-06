@@ -8,17 +8,17 @@ const FloatingChat = () => {
 
   return (
     <>
-      {/* Floating Button at Bottom Center */}
+      {/* Floating button positioned above "Hire Me" */}
       <button
         onClick={toggleChat}
-        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 z-50"
+        className="fixed bottom-24 right-6 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 z-50"
       >
-        🔥
+        💬
       </button>
 
       {/* Chatbot Panel */}
       {isOpen && (
-        className="fixed bottom-24 right-6 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 z-50">
+        <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 w-96 h-[500px] bg-slate-900 rounded-lg shadow-lg z-50 flex flex-col">
           <div className="flex justify-between items-center p-4 bg-slate-800 rounded-t-lg">
             <span className="text-white font-bold">Chatbot</span>
             <button onClick={toggleChat} className="text-white font-bold">

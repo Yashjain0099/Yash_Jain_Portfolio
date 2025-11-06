@@ -27,7 +27,7 @@ const App = () => (
       </TooltipProvider>
     </QueryClientProvider>
 
-    <section id="ai-assistant" className="py-20 px-4 bg-slate-950">
+    {/* <section id="ai-assistant" className="py-20 px-4 bg-slate-950">
   <div className="max-w-7xl mx-auto">
     <div className="text-center mb-12">
       <h2 className="text-4xl font-bold text-white mb-4">
@@ -39,7 +39,7 @@ const App = () => (
       </p>
     </div>
   </div>
-</section>
+</section> */}
 
   </>
 );
