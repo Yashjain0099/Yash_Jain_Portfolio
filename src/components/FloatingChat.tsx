@@ -1,25 +1,37 @@
-// FloatingChatButton.tsx
-import { MessageCircle, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState } from "react";
+import PortfolioChatbot from "./PortfolioChatbot";
 
-export const FloatingChat = () => {
+const FloatingChat = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const toggleChat = () => setIsOpen(!isOpen);
 
   return (
     <>
+      {/* Floating Button at Bottom Center */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center z-50"
+        onClick={toggleChat}
+        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 z-50"
       >
-        {isOpen ? <X className="w-6 h-6 text-white" /> : <MessageCircle className="w-6 h-6 text-white" />}
+        💬
       </button>
-      
+
+      {/* Chatbot Panel */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 animate-in slide-in-from-bottom-5">
-          <PortfolioChatbot />
+        <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 w-96 h-[500px] bg-slate-900 rounded-lg shadow-lg z-50 flex flex-col">
+          <div className="flex justify-between items-center p-4 bg-slate-800 rounded-t-lg">
+            <span className="text-white font-bold">Chatbot</span>
+            <button onClick={toggleChat} className="text-white font-bold">
+              ✕
+            </button>
+          </div>
+          <div className="flex-1 overflow-auto p-4">
+            <PortfolioChatbot />
+          </div>
         </div>
       )}
     </>
   );
 };
+
 export default FloatingChat;

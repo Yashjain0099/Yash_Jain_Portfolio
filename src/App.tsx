@@ -28,19 +28,19 @@ const App = () => (
     </QueryClientProvider>
 
     <section id="ai-assistant" className="py-20 px-4 bg-slate-950">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            🤖 AI-Powered Assistant
-          </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Try my RAG-powered chatbot built with Gemini 1.5 Pro.
-            Ask about my experience, projects, skills, or certifications!
-          </p>
-        </div>
-        <PortfolioChatbot />
-      </div>
-    </section>
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center mb-12">
+      <h2 className="text-4xl font-bold text-white mb-4">
+        🤖 AI-Powered Assistant
+      </h2>
+      <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+        Try my RAG-powered chatbot built with Gemini 1.5 Pro.
+        Ask about my experience, projects, skills, or certifications!
+      </p>
+    </div>
+  </div>
+</section>
+
   </>
 );
 
