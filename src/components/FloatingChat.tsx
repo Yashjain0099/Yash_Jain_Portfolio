@@ -22,3 +22,4 @@ export const FloatingChat = () => {
     </>
   );
 };
+export default FloatingChat;
