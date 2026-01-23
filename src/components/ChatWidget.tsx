@@ -62,15 +62,15 @@ const ChatWidget = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/chat`, {
+      const response = await fetch(`${API_URL}/run/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: inputValue,
-          top_k: 3,
+        data: [inputValue]
         }),
+
       });
 
       if (!response.ok) {
@@ -80,10 +80,9 @@ const ChatWidget = () => {
       const data = await response.json();
 
       const botMessage = {
-        type: 'bot',
-        content: data.answer,
-        sources: data.sources,
-        timestamp: new Date(),
+      type: 'bot',
+      content: data.data[0],
+      timestamp: new Date(),
       };
 
       setMessages(prev => [...prev, botMessage]);
