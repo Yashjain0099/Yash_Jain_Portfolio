@@ -29,10 +29,9 @@ const ChatWidget = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // FIXED: Correct API URL
+  // API URL - Update this with your actual HF Space URL
   const API_URL = import.meta.env.VITE_API_URL || 'https://yashuu-yash-s-bot.hf.space';
   
-  // Auto-scroll to bottom
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -41,14 +40,13 @@ const ChatWidget = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Focus input when chat opens
   useEffect(() => {
     if (isOpen) {
       inputRef.current?.focus();
     }
   }, [isOpen]);
 
-  // FIXED: Correct API call for Gradio
+  // FIXED: Correct API call format for Gradio
   const sendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
 
@@ -64,45 +62,45 @@ const ChatWidget = () => {
     setIsLoading(true);
 
     try {
-      // FIXED: Correct endpoint path (remove trailing slash)
-      const response = await fetch(`${API_URL}/api/predict`, {
+      console.log('Sending to API:', `${API_URL}/call/chat`);
+      
+      // CORRECT: Use /call/chat endpoint (not /api/predict)
+      const response = await fetch(`${API_URL}/call/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          // FIXED: Correct data format for Gradio
-          data: [messageToSend, 3]
+          data: [messageToSend, 3]  // [message, top_k]
         }),
       });
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('API Error Response:', errorText);
+        console.error('API Error:', response.status, errorText);
         throw new Error(`API Error: ${response.status}`);
       }
 
       const result = await response.json();
       console.log('API Response:', result);
 
-      // FIXED: Parse Gradio response correctly
+      // Parse Gradio response
       let botAnswer = '';
       let botSources: Source[] = [];
 
       if (result.data) {
-        // Gradio returns data as an object with answer and sources
+        // Result.data is the response from api_chat function
         if (typeof result.data === 'object' && result.data.answer) {
           botAnswer = result.data.answer;
           botSources = result.data.sources || [];
-        } 
-        // Or as a simple string
-        else if (typeof result.data === 'string') {
-          botAnswer = result.data;
-        }
-        // Or as an array [answer, sources]
-        else if (Array.isArray(result.data)) {
-          botAnswer = result.data[0];
-          botSources = result.data[1] || [];
+        } else if (typeof result.data === 'string') {
+          try {
+            const parsed = JSON.parse(result.data);
+            botAnswer = parsed.answer || result.data;
+            botSources = parsed.sources || [];
+          } catch {
+            botAnswer = result.data;
+          }
         }
       }
 
@@ -120,7 +118,7 @@ const ChatWidget = () => {
       
       const errorMessage: ChatMessage = {
         type: 'bot',
-        content: "⚠️ Sorry, I'm having trouble connecting. The chatbot might be starting up (takes ~30 seconds on first load). Please try again!",
+        content: "⚠️ Sorry, I'm having trouble connecting. The chatbot might be starting up (takes ~30 seconds). Please try again!",
         timestamp: new Date(),
         isError: true,
       };
@@ -131,7 +129,6 @@ const ChatWidget = () => {
     }
   };
 
-  // Handle Enter key
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -139,7 +136,6 @@ const ChatWidget = () => {
     }
   };
 
-  // Quick action buttons
   const quickActions = [
     "What are Yash's main skills?",
     "Tell me about his projects",
