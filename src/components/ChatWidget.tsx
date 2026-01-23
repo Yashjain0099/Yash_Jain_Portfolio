@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, X, MessageCircle, Loader2, ExternalLink } from 'lucide-react';
+
 interface Source {
   source: string;
   similarity_score: number;
@@ -15,7 +16,7 @@ interface ChatMessage {
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<ChatMessage[]>([
     {
       type: 'bot',
       content: "👋 Hi! I'm Yash's AI Assistant. Ask me about his skills, projects, or experience!",
@@ -25,11 +26,11 @@ const ChatWidget = () => {
   
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef(null);
-  const inputRef = useRef(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  // API Configuration
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  // FIXED: Correct API URL
+  const API_URL = import.meta.env.VITE_API_URL || 'https://yashuu-yash-s-bot.hf.space';
   
   // Auto-scroll to bottom
   const scrollToBottom = () => {
@@ -47,58 +48,79 @@ const ChatWidget = () => {
     }
   }, [isOpen]);
 
-  // Send message to API
+  // FIXED: Correct API call for Gradio
   const sendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
 
-    const userMessage = {
+    const userMessage: ChatMessage = {
       type: 'user',
       content: inputValue,
       timestamp: new Date(),
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const messageToSend = inputValue;
     setInputValue('');
     setIsLoading(true);
 
-    
-
     try {
-      const response = await fetch(`${API_URL}/api/predict/`,
-     {
-       method: "POST",
-       headers: {
-      "Content-Type": "application/json",
-       },
-       body: JSON.stringify({
-       api_name: "/chat",
-       data: [
-        String(userMessage.content), // must be string
-        Number(3)                     // must be number (1–5)
-      ], // 
-     }),
-  }
-);
+      // FIXED: Correct endpoint path (remove trailing slash)
+      const response = await fetch(`${API_URL}/api/predict`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          // FIXED: Correct data format for Gradio
+          data: [messageToSend, 3]
+        }),
+      });
 
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API Error Response:', errorText);
         throw new Error(`API Error: ${response.status}`);
       }
 
-      const data = await response.json();
+      const result = await response.json();
+      console.log('API Response:', result);
 
-      const botMessage = {
-      type: 'bot',
-      content: data.data[0],
-      timestamp: new Date(),
+      // FIXED: Parse Gradio response correctly
+      let botAnswer = '';
+      let botSources: Source[] = [];
+
+      if (result.data) {
+        // Gradio returns data as an object with answer and sources
+        if (typeof result.data === 'object' && result.data.answer) {
+          botAnswer = result.data.answer;
+          botSources = result.data.sources || [];
+        } 
+        // Or as a simple string
+        else if (typeof result.data === 'string') {
+          botAnswer = result.data;
+        }
+        // Or as an array [answer, sources]
+        else if (Array.isArray(result.data)) {
+          botAnswer = result.data[0];
+          botSources = result.data[1] || [];
+        }
+      }
+
+      const botMessage: ChatMessage = {
+        type: 'bot',
+        content: botAnswer || 'Sorry, I received an empty response.',
+        sources: botSources,
+        timestamp: new Date(),
       };
 
       setMessages(prev => [...prev, botMessage]);
+
     } catch (error) {
       console.error('Chat error:', error);
       
-      const errorMessage = {
+      const errorMessage: ChatMessage = {
         type: 'bot',
-        content: "⚠️ Sorry, I'm having trouble connecting. Please try again or check back later.",
+        content: "⚠️ Sorry, I'm having trouble connecting. The chatbot might be starting up (takes ~30 seconds on first load). Please try again!",
         timestamp: new Date(),
         isError: true,
       };
@@ -110,7 +132,7 @@ const ChatWidget = () => {
   };
 
   // Handle Enter key
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
@@ -124,7 +146,7 @@ const ChatWidget = () => {
     "What's his experience?",
   ];
 
-  const handleQuickAction = (action) => {
+  const handleQuickAction = (action: string) => {
     setInputValue(action);
     inputRef.current?.focus();
   };
@@ -253,7 +275,7 @@ const ChatWidget = () => {
               <button
                 onClick={sendMessage}
                 disabled={!inputValue.trim() || isLoading}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-black p-3 rounded-full hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-full hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                 aria-label="Send message"
               >
                 {isLoading ? (
