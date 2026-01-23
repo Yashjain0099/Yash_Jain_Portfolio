@@ -30,16 +30,6 @@ const projects = [
     image: projectTokenTrim,
   },
   {
-    title: 'Legal Lens — AI-Powered Contract Analysis',
-    description: 'Web-based AI tool to automate legal contract review with color-coded risk classification and intelligent clause extraction',
-    tags: ['Python', 'Django', 'NLP', 'JavaScript', 'Bootstrap'],
-    categories: ['nlp', 'web'],
-    github: 'https://github.com/Yashjain0099/LegalLens',
-    demo: null,
-    featured: true,
-    image: projectLegalLens,
-  },
-  {
     title: 'Iris Tumor Detection using Deep Learning',
     description: 'CNN-based deep learning model for classifying iris images as tumor-affected or healthy with high precision',
     tags: ['Python', 'CNN', 'TensorFlow', 'Keras', 'Computer Vision','flask'],
@@ -48,6 +38,16 @@ const projects = [
     demo: 'https://huggingface.co/spaces/Yashuu/I-Tumor-Scanner',
     featured: true,
     image: projectIris,
+  },
+  {
+    title: 'Legal Lens — AI-Powered Contract Analysis',
+    description: 'Web-based AI tool to automate legal contract review with color-coded risk classification and intelligent clause extraction',
+    tags: ['Python', 'Django', 'NLP', 'JavaScript', 'Bootstrap'],
+    categories: ['nlp', 'web'],
+    github: 'https://github.com/Yashjain0099/LegalLens',
+    demo: null,
+    featured: true,
+    image: projectLegalLens,
   },
   {
     title: 'Neural Network Foundation',

@@ -5,32 +5,37 @@ const certificates = [
   {
     name: 'Python for Beginners',
     issuer: 'Microsoft',
-    link: '#',
+    link: 'https://drive.google.com/drive/u/0/folders/1dTLeMn9n6pDjeEPNbnJmmLGNJhKPUod9',
   },
   {
     name: 'Python for Data Science',
     issuer: 'IBM',
-    link: '#',
+    link: 'https://drive.google.com/drive/u/0/folders/1M61tcrg5lZhA7i-fegV6FOp0BFnU07-k',
   },
   {
     name: 'Explore Machine Learning using Python',
     issuer: 'Infosys',
-    link: '#',
+    link: 'https://drive.google.com/drive/u/0/folders/1n5hwRXbvpx4XCPUjrMEKMMSOetmxN00C',
   },
   {
     name: 'Introduction to Deep Learning',
     issuer: 'Infosys',
-    link: '#',
+    link: 'https://drive.google.com/drive/u/0/folders/1n5hwRXbvpx4XCPUjrMEKMMSOetmxN00C',
   },
   {
     name: 'Introduction to Artificial Intelligence',
     issuer: 'Infosys',
-    link: '#',
+    link: 'https://drive.google.com/drive/u/0/folders/1n5hwRXbvpx4XCPUjrMEKMMSOetmxN00C',
   },
   {
-    name: 'Principles of Generative AI Certification',
+    name: 'Introduction to Natural Language Processing',
     issuer: 'Infosys',
-    link: '#',
+    link: 'https://drive.google.com/drive/u/0/folders/1n5hwRXbvpx4XCPUjrMEKMMSOetmxN00C',
+  },
+  {
+    name: 'Introduction to Data Science',
+    issuer: 'Infosys',
+    link: 'https://drive.google.com/drive/u/0/folders/1n5hwRXbvpx4XCPUjrMEKMMSOetmxN00C',
   },
 ];
 

@@ -72,7 +72,7 @@ const Index = () => {
       <Footer />
 
       {/* Floating Hire Me Button - Now visible after scrolling past hero */}
-      {showHireMe && (
+      {/* {showHireMe && (
         <Button
           onClick={scrollToContact}
           className="fixed bottom-6 right-6 z-50 btn-warm shadow-2xl animate-pulse-glow"
@@ -80,7 +80,8 @@ const Index = () => {
         >
           Hire Me
         </Button>
-      )}
+      )} */}
+      
 
       {/* Scroll to Top Button */}
       {showScrollTop && (
