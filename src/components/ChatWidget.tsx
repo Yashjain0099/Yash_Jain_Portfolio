@@ -72,7 +72,10 @@ const ChatWidget = () => {
        },
        body: JSON.stringify({
        api_name: "/chat",
-       data: [userMessage.content, 3], // message + top_k
+       data: [
+        String(userMessage.content), // must be string
+        Number(3)                     // must be number (1–5)
+      ], // 
      }),
   }
 );
