@@ -7,9 +7,10 @@ const experiences = [
     period: 'June 2025 - August 2025',
     location: 'Hybrid',
     achievements: [
-      'Engineered and deployed AI-powered pipelines using Python to enhance document understanding and generation capabilities',
+      'Developed a domain-focused MCQ Generator (Frontend, Backend, AI/ML) leveraging Python, Hugging Face Transformers & Google FLAN-T5.',
+      'Integrated AI models into an interactive Streamlit UI for real-time use.',
       'Optimized transformer models using Hugging Face, improving data relevance and model performance for production use cases',
-      'Created an end-to-end MCQ generator using T5-Flan model, spanning from model integration to complete user interface design',
+      'Worked in a collaborative team of 3, conducting weekly demos and progress reports to mentors.',
     ],
   },
   {
@@ -19,7 +20,7 @@ const experiences = [
     location: 'Remote',
     link: '#',
     achievements: [
-      'Developed CNN-based image classification models for Iris Tumor Detection, achieving ~95% accuracy on medical datasets',
+      'Developed CNN-based image classification models for Iris Tumor Detection, achieving ~90% accuracy on medical datasets',
       'Boosted model performance and inference accuracy by 40% through enhanced image preprocessing and data augmentation techniques',
       'Collaborated with a 4-member team to present findings and submit internal technical documentation for evaluation',
     ],
