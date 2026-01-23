@@ -5,8 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import  FloatingChat  from './components/FloatingChat';
-import  PortfolioChatbot  from './components/PortfolioChatbot';
+import ChatWidget from './components/ChatWidget';
 
 const queryClient = new QueryClient();
 
@@ -15,8 +14,8 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
+        <ChatWidget />
         <Sonner />
-        <FloatingChat />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -40,7 +39,6 @@ const App = () => (
     </div>
   </div>
 </section> */}
-
   </>
 );
 
