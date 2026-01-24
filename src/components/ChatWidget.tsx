@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, X, MessageCircle, Loader2, ExternalLink } from 'lucide-react';
+import { Client } from "@gradio/client";
 
 interface Source {
   source: string;
@@ -29,8 +30,7 @@ const ChatWidget = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // API URL - Update this with your actual HF Space URL
-  const API_URL = import.meta.env.VITE_API_URL || 'https://yashuu-yash-s-bot.hf.space';
+  const API_URL = 'https://yashuu-yash-s-bot.hf.space';
   
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -46,88 +46,61 @@ const ChatWidget = () => {
     }
   }, [isOpen]);
 
-  // FIXED: Correct API call format for Gradio
-  const sendMessage = async () => {
-    if (!inputValue.trim() || isLoading) return;
+  // Using Gradio's /run/predict endpoint (synchronous, simpler)
+  // Using Gradio Client with /chat api_name
+const sendMessage = async () => {
+  if (!inputValue.trim() || isLoading) return;
 
-    const userMessage: ChatMessage = {
-      type: 'user',
-      content: inputValue,
+  const messageToSend = inputValue;
+
+  const userMessage: ChatMessage = {
+    type: "user",
+    content: messageToSend,
+    timestamp: new Date(),
+  };
+
+  setMessages(prev => [...prev, userMessage]);
+  setInputValue("");
+  setIsLoading(true);
+
+  try {
+    // 1. Connect to your Hugging Face Space
+    const app = await Client.connect("Yashuu/Yash-s_bot");
+
+    // 2. Call the named Gradio API
+    const result = await app.predict("/chat", [
+      messageToSend, // message
+      3               // top_k
+    ]);
+
+    // 3. Extract response
+    const apiResponse = result.data[0] as any;
+
+    const botMessage: ChatMessage = {
+      type: "bot",
+      content: apiResponse?.answer ?? "I'm sorry, I couldn't find an answer.",
+      sources: apiResponse?.sources ?? [],
       timestamp: new Date(),
     };
 
-    setMessages(prev => [...prev, userMessage]);
-    const messageToSend = inputValue;
-    setInputValue('');
-    setIsLoading(true);
+    setMessages(prev => [...prev, botMessage]);
 
-    try {
-      console.log('Sending to API:', `${API_URL}/call/chat`);
-      
-      // CORRECT: Use /call/chat endpoint (not /api/predict)
-      const response = await fetch(`${API_URL}/call/chat`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          data: [messageToSend, 3]  // [message, top_k]
-        }),
-      });
+  } catch (error) {
+    console.error("Gradio Connection Error:", error);
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('API Error:', response.status, errorText);
-        throw new Error(`API Error: ${response.status}`);
-      }
+    const errorMessage: ChatMessage = {
+      type: "bot",
+      content:
+        "⚠️ Connection failed. The chatbot may be starting up (free HF Spaces can sleep). Please try again in a few seconds!",
+      timestamp: new Date(),
+      isError: true,
+    };
 
-      const result = await response.json();
-      console.log('API Response:', result);
-
-      // Parse Gradio response
-      let botAnswer = '';
-      let botSources: Source[] = [];
-
-      if (result.data) {
-        // Result.data is the response from api_chat function
-        if (typeof result.data === 'object' && result.data.answer) {
-          botAnswer = result.data.answer;
-          botSources = result.data.sources || [];
-        } else if (typeof result.data === 'string') {
-          try {
-            const parsed = JSON.parse(result.data);
-            botAnswer = parsed.answer || result.data;
-            botSources = parsed.sources || [];
-          } catch {
-            botAnswer = result.data;
-          }
-        }
-      }
-
-      const botMessage: ChatMessage = {
-        type: 'bot',
-        content: botAnswer || 'Sorry, I received an empty response.',
-        sources: botSources,
-        timestamp: new Date(),
-      };
-
-      setMessages(prev => [...prev, botMessage]);
-
-    } catch (error) {
-      console.error('Chat error:', error);
-      
-      const errorMessage: ChatMessage = {
-        type: 'bot',
-        content: "⚠️ Sorry, I'm having trouble connecting. The chatbot might be starting up (takes ~30 seconds). Please try again!",
-        timestamp: new Date(),
-        isError: true,
-      };
-
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    setMessages(prev => [...prev, errorMessage]);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -199,22 +172,7 @@ const ChatWidget = () => {
                   }`}
                 >
                   <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                  
-                  {/* Source Citations */}
-                  {message.sources && message.sources.length > 0 && (
-                    <div className="mt-2 pt-2 border-t border-gray-200 text-xs text-gray-500">
-                      <p className="font-semibold mb-1">Sources:</p>
-                      {message.sources.map((source, idx) => (
-                        <div key={idx} className="flex items-center space-x-1">
-                          <ExternalLink className="w-3 h-3" />
-                          <span className="truncate">{source.source}</span>
-                          <span className="text-green-600">
-                            ({(source.similarity_score * 100).toFixed(0)}%)
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+  
                   
                   <p className="text-xs mt-1 opacity-70">
                     {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
